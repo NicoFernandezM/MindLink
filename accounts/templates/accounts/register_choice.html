@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'accounts/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container register-choice-container">
+        <h2>Choose your account type</h2>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a href="{% url 'accounts:register_client' %}" class="btn btn-primary btn-lg">Register as Client</a>
+            <a href="{% url 'accounts:register_therapist' %}" class="btn btn-secondary btn-lg">Register as Therapist</a>
+        </div>
+    </div>
+{% endblock %}
