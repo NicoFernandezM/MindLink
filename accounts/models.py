@@ -22,7 +22,6 @@ class ClientProfile(models.Model):
     date_of_birth = models.DateField()
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
     country = models.CharField(max_length=100, blank=True, null=True)
     province = models.CharField(max_length=100, blank=True, null=True)
     street = models.CharField(max_length=255, blank=True, null=True)
@@ -56,6 +55,7 @@ class TherapistProfile(models.Model):
     province = models.CharField(max_length=100)
     street = models.CharField(max_length=255, blank=True, null=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
+    rating = models.FloatField(default=0.0)
 
     def __str__(self):
         return f"Therapist: {self.first_name} {self.last_name}"

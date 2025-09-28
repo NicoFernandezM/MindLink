@@ -1,10 +1,9 @@
-/* accounts/static/accounts/css/style.css */
-
+/* ----------- Base styles ----------- */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f8f9fa; /* Light gray background */
+    background-color: #f8f9fa;
 }
 
 .container {
@@ -13,135 +12,123 @@ body {
     padding: 0 20px;
 }
 
-.register-choice-container {
+/* ----------- Register Page ----------- */
+.register-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 50vh;
+    min-height: calc(100vh - 100px);
     padding: 20px;
 }
 
-.register-choice-container h2 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.register-choice-container .btn {
-    margin: 10px;
-}
-
-/* Styles for register_client.html and register_therapist.html */
-.register-container {
-    margin-top: 3%;
-    margin-bottom: 3%;
-}
-
-.register-page {
-    display: grid;
-    grid-template-columns: 1fr;  /* Stacking layout for smaller screens */
-    gap: 30px;
-    padding: 40px;
-}
-
-.register-left {
-    /* Removed background and border-radius */
-    text-align: center;
-    color: #fff;
-    padding: 30px;
-    /* background: #007bff; */
-    /* border-top-left-radius: 0.5rem; */
-    /* border-bottom-left-radius: 0.5rem; */
-
-    /* Use the gradient from the hero section */
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white; /* Set text color to white for better readability */
-    border-radius: 20px; /* Add rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-}
-
-.register-right {
-    padding: 30px;
+.register-card {
+    width: 100%;
+    max-width: 600px;
     background: #fff;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
 }
 
-.register-left img {
-    margin-top: 15%;
-    margin-bottom: 5%;
-    width: 50%;
-    -webkit-animation: mover 2s infinite  alternate;
-    animation: mover 1s infinite  alternate;
-}
-
-@-webkit-keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
-}
-@keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
-}
-
-.register-left p {
-    font-weight: lighter;
-    padding: 12%;
-    margin-top: -9%;
-    color:white;
-}
-
-.register-right h2 {
+.register-card h2 {
     text-align: center;
     margin-bottom: 30px;
     color: #555;
 }
 
+/* ----------- Tabs ----------- */
+.tab-container {
+    display: flex;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 12px 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #555;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+}
+
+.tab-button.active {
+    background-color: #667eea;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+    padding: 10px 0;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* ----------- Form styles ----------- */
 .register-form .form-group {
     margin-bottom: 20px;
 }
 
 .register-form label {
-    font-weight: 600;  /* Make labels a bit bolder */
-    display: block; /* Ensure labels are above the input */
-    margin-bottom: 5px; /* Add space between label and input */
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
 }
 
-.register-form input, .register-form textarea, .register-form select {
+.register-form input,
+.register-form textarea,
+.register-form select {
     border: 1px solid #ced4da;
-    border-radius: 5px;  /* Add rounded corners to inputs */
-    padding: 10px;  /* Add some padding to inputs */
-    width: 100%;  /* Make inputs fill the container */
-    box-sizing: border-box; /* Include padding and border in input's width */
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.register-form input:focus, .register-form textarea:focus, .register-form select:focus {
+.register-form input:focus,
+.register-form textarea:focus,
+.register-form select:focus {
     outline: none;
-    box-shadow: none;
-    border-color: #667eea;  /* Use your brand color on focus */
+    border-color: #667eea;
 }
 
-.register-right .btn-primary {
-    float: right;
-    border-radius: 50px; /* Use the standard button radius */
+/* ----------- Optional text ----------- */
+.optional-label {
+    font-size: 0.9em;
+    font-weight: normal;
+    color: #666;
+    margin-left: 4px;
+}
+
+/* ----------- Button ----------- */
+.register-form .btn-primary {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
     border: none;
-    width: auto;    /* Adjust width to content */
-    padding: 15px 30px; /* Use standard button padding */
-    background: linear-gradient(45deg, #ff6b6b, #feca57); /* Use the gradient */
+    padding: 15px;
+    background: linear-gradient(45deg, #ff6b6b, #feca57);
     font-weight: 600;
     color: #fff;
     margin-top: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.register-right .btn-primary:hover {
+.register-form .btn-primary:hover {
     background: linear-gradient(45deg, #0056b3, #0056b3);
     transform: translateY(-3px);
     box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
 }
 
-/* Add these styles */
+/* ----------- Errors ----------- */
 .errorlist {
     color: red;
     margin-top: 5px;
@@ -151,9 +138,9 @@ body {
     list-style-type: none;
 }
 
-/* Responsive Design */
-@media (min-width: 768px) {
-    .register-page {
-        grid-template-columns: 1fr 1fr; /* Side-by-side layout for larger screens */
+/* ----------- Responsive ----------- */
+@media (max-width: 768px) {
+    .register-card {
+        padding: 20px;
     }
 }

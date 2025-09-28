@@ -2,20 +2,39 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, ClientProfile, TherapistProfile
 
-class ClientRegisterForm(UserCreationForm):
+class BaseRegisterForm(UserCreationForm):
     date_of_birth = forms.DateField(required=True, widget=forms.DateInput(attrs={'type': 'date'}))
     first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=False)
-    country = forms.CharField(required=False)
-    province = forms.CharField(required=False)
-    street = forms.CharField(required=False)
-    phone_number = forms.CharField(required=False)
-    emergency_contact_name = forms.CharField(required=False)
-    emergency_contact_phone = forms.CharField(required=False)
+    last_name = forms.CharField(required=False, help_text="(Optional)")
+    email = forms.EmailField(required=True)
 
     class Meta:
         model = User
-        fields = ("email", "password1", "password2")
+        fields = ("email",)
+
+    def save(self, commit=True):
+        user = super().save(commit)
+        user.first_name = self.cleaned_data["first_name"]
+        user.last_name = self.cleaned_data.get("last_name", "")
+        user.save()
+        return user
+
+
+class ClientRegisterForm(BaseRegisterForm):
+    country = forms.CharField(required=False, help_text="(Optional)")
+    province = forms.CharField(required=False, help_text="(Optional)")
+    street = forms.CharField(required=False, help_text="(Optional)")
+    phone_number = forms.CharField(required=False, help_text="(Optional)")
+    emergency_contact_name = forms.CharField(required=False, help_text="(Optional)")
+    emergency_contact_phone = forms.CharField(required=False, help_text="(Optional)")
+
+
+    class Meta(BaseRegisterForm.Meta):
+        fields = BaseRegisterForm.Meta.fields + (
+            "date_of_birth",
+            "first_name",
+            "last_name",
+        )
 
     def save(self, commit=True):
         user = super().save(commit)
@@ -33,20 +52,20 @@ class ClientRegisterForm(UserCreationForm):
         )
         return user
 
-class TherapistRegisterForm(UserCreationForm):
-    date_of_birth = forms.DateField(required=True, widget=forms.DateInput(attrs={'type': 'date'}))
-    first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=False)
+class TherapistRegisterForm(BaseRegisterForm):
     license_number = forms.CharField(required=True)
     specialty = forms.CharField(required=True)
     country = forms.CharField(required=True)
     province = forms.CharField(required=True)
-    street = forms.CharField(required=False)
-    phone_number = forms.CharField(required=False)
+    street = forms.CharField(required=False, help_text="(Optional)")
+    phone_number = forms.CharField(required=False, help_text="(Optional)")
 
-    class Meta:
-        model = User
-        fields = ("email", "password1", "password2")
+    class Meta(BaseRegisterForm.Meta):
+        fields = BaseRegisterForm.Meta.fields + (
+            "date_of_birth",
+            "first_name",
+            "last_name",
+        )
 
     def save(self, commit=True):
         user = super().save(commit)
