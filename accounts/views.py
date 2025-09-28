@@ -13,7 +13,7 @@ class ClientRegisterView(CreateView):
 class TherapistRegisterView(CreateView):
     form_class = TherapistRegisterForm
     template_name = "accounts/register_therapist.html"
-    success_url = reverse_lazy("login")
+    success_url = reverse_lazy("core:home")
 
 class RegisterChoiceView(TemplateView):
     template_name = "accounts/register_choice.html"

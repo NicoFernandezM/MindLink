@@ -7,8 +7,28 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(ClientProfile)
 class ClientProfileAdmin(admin.ModelAdmin):
-    list_display = ("user", "age", "emergency_contact")
+    list_display = (
+        "id",
+        "first_name",
+        "last_name",
+        "date_of_birth",
+        "country",
+        "province",
+        "phone_number",
+        "therapist",
+    )
+
 
 @admin.register(TherapistProfile)
 class TherapistProfileAdmin(admin.ModelAdmin):
-    list_display = ("user", "license_number", "specialty", "rating")
+    list_display = (
+        "id",
+        "first_name",
+        "last_name",
+        "license_number",
+        "specialty",
+        "country",
+        "province",
+        "phone_number",
+    )
+
