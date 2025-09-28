@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const clientForm = document.getElementById('client-form');
     const therapistForm = document.getElementById('therapist-form');
     const accountTypeInput = document.getElementById('account_type');
+    const formTitle = document.getElementById('form-title');
 
     function disableFields(container, disabled) {
         container.querySelectorAll('input, select, textarea').forEach(el => {
@@ -24,10 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
             clientForm.classList.add('active');
             accountTypeInput.value = 'client';
             disableFields(clientForm, false);
+            formTitle.textContent = "Register as a Client";
         } else if (tab === 'therapist') {
             therapistForm.classList.add('active');
             accountTypeInput.value = 'therapist';
             disableFields(therapistForm, false);
+            formTitle.textContent = "Register as a Therapist";
         }
     }
 

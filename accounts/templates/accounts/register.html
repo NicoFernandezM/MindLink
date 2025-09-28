@@ -8,7 +8,7 @@
 {% block content %}
     <div class="container register-container">
         <div class="register-card">
-            <h2>Register</h2>
+            <h2 id="form-title">Register as a Client</h2> <!-- título dinámico -->
 
             <div class="tab-container">
                 <button class="tab-button active" data-tab="client">Client</button>
@@ -31,7 +31,6 @@
 
                 <!-- Client -->
                 <div id="client-form" class="tab-content active">
-                    <h3>Client Information</h3>
                     {% for field in client_form %}
                         <div class="form-group">
                             <label for="{{ field.id_for_label }}">
@@ -47,7 +46,6 @@
 
                 <!-- Therapist -->
                 <div id="therapist-form" class="tab-content">
-                    <h3>Therapist Information</h3>
                     {% for field in therapist_form %}
                         <div class="form-group">
                             <label for="{{ field.id_for_label }}">

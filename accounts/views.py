@@ -45,9 +45,6 @@ class RegisterView(TemplateView):
             context = {'client_form': client_form, 'therapist_form': therapist_form, 'error': 'Please select an account type.'}
             return render(request, self.template_name, context)
 
-class RegisterChoiceView(TemplateView):
-    template_name = "accounts/register_choice.html"
-
 @login_required
 def dashboard_view(request):
     user = request.user
