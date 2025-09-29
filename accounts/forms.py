@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, ClientProfile, TherapistProfile
+from django.core.exceptions import ValidationError
 
 class BaseRegisterForm(UserCreationForm):
     date_of_birth = forms.DateField(required=True, widget=forms.DateInput(attrs={'type': 'date'}))
@@ -11,6 +12,12 @@ class BaseRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("email",)
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("A user with this email already exists.")
+        return email
 
     def save(self, commit=True):
         user = super().save(commit)
